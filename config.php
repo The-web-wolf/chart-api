@@ -2,13 +2,13 @@
 error_reporting(E_ALL);
 require('vendor/autoload.php');
 
-if(file_exists(__DIR__/'/.env')) {
+if(file_exists(__DIR__.'/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 }
 else{
     echo "No .env file found";
-    
+
 }
 
 // extract config variables from environment variables
