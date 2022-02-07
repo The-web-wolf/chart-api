@@ -6,11 +6,6 @@ if(file_exists(__DIR__.'/.env')) {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 }
-else{
-    echo "No .env file found";
-
-}
-
 // extract config variables from environment variables
 $db_host = $_ENV['DB_HOST'];
 $db_name = $_ENV['DB_NAME'];
