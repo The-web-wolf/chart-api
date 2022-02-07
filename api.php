@@ -34,14 +34,30 @@ for ($i = 0; $i < $rows_count; $i++) {
         'expense_date' => $row['expense_date'],
         'amount' => $row['amount']
       );
-      $receipts[$row['expense_type']][] = array(
-        'name' => $row['expense_type'],
-        'value' => array($row_extract)
-      );
-      
+      $receipts[$row['expense_type']][] = $row_extract;
     }
 }
 
 
-$receipts = json_encode([$receipts]);
-print($receipts);
+// loop through receipts array and append to each expense type
+
+$merged_receipts = array();
+
+foreach ($receipts as $key => $value) {
+  $merged_receipts[$key] = array_reduce($value, function($carry, $item) {
+    // check if two expenses have same name
+      $carry[$item['expense']][] = // add all expenses with that name
+        array(
+          'expense_date' => $item['expense_date'],
+          'amount' => $item['amount']
+        );
+    return $carry;
+  });
+
+}
+
+
+print_r(json_encode($merged_receipts));
+
+// $receipts = json_encode($receipts);
+// print_r($receipts);
