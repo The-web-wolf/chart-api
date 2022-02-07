@@ -29,4 +29,4 @@ while ($row = pg_fetch_row($result)) {
 
 
 $receipts = json_encode($receipts);
-print("[{\"receipts\": test}]");
+print($receipts);
