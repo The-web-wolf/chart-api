@@ -1,0 +1,13 @@
+{
+    "name": "chart/api",
+    "description": "connection to postgres for chart",
+    "authors": [
+        {
+            "name": "the-web-wolf",
+            "email": "abeshiemmanuel37@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
