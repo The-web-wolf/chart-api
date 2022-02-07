@@ -1,8 +1,8 @@
 <?php 
+error_reporting(E_ALL);
 require('vendor/autoload.php');
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-error_reporting(E_ALL);
 die('test');
 
 // extract config variables from environment variables
