@@ -23,8 +23,23 @@ $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // create object of results
 $receipts = array();
-while ($row = pg_fetch_row($result)) {
-    $receipts[] = $row;
+
+$rows_count = pg_num_rows($result);
+for ($i = 0; $i < $rows_count; $i++) {
+    $row = pg_fetch_assoc($result);
+   // check if value of expense_type is already in receipts array
+    if(!in_array($row['expense_type'], $receipts)) {
+      $row_extract = array(
+        'expense' => $row['expense'],
+        'expense_date' => $row['expense_date'],
+        'amount' => $row['amount']
+      );
+      $receipts[$row['expense_type']][] = $row_extract;
+      
+    }
+    else{
+      $receipts[] = $row;
+    }
 }
 
 
