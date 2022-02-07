@@ -1,9 +1,9 @@
 <?php 
-require('vendor/autoload.php');
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-die($db_host);
+// require('vendor/autoload.php');
+// $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+// $dotenv->load();
+error_reporting(E_ALL);
+die('test');
 
 // extract config variables from environment variables
 $db_host = $_ENV['DB_HOST'];
