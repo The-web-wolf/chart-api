@@ -43,5 +43,5 @@ for ($i = 0; $i < $rows_count; $i++) {
 }
 
 
-$receipts = json_encode($receipts);
+$receipts = json_encode([$receipts]);
 print($receipts);
