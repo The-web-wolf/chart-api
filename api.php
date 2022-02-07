@@ -34,11 +34,11 @@ for ($i = 0; $i < $rows_count; $i++) {
         'expense_date' => $row['expense_date'],
         'amount' => $row['amount']
       );
-      $receipts[$row['expense_type']][] = $row_extract;
+      $receipts[$row['expense_type']][] = array(
+        'name' => $row['expense_type'],
+        'value' => array($row_extract)
+      );
       
-    }
-    else{
-      $receipts[] = $row;
     }
 }
 
