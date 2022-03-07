@@ -19,6 +19,7 @@ if (isset($_GET['freelancer'])) {
   $freelancer = $_GET['freelancer'];
   $freelancer = pg_escape_string($freelancer);
   $query = "SELECT * FROM \"new-chart\" WHERE name = '$name' AND worker_initials = '$freelancer' ";
+  echo('serach by freelancer');
 } else {
   $query = "SELECT * FROM \"new-chart\" WHERE name = '$name' ";
 }
