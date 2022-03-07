@@ -23,7 +23,14 @@ $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 // print data
 $data = array();
 while ($row = pg_fetch_row($result)) {
-  $data[] = $row;
+  // add to data with key pair values
+  $data[] = array(
+    'avg_minutes_spent' => $row[0],
+    'name' => $row[1],
+    'sum_minutes_spent' => $row[2],
+    'created' => $row[3],
+    'worker_initials' => $row[4],
+  );
 }
 
 print_r(json_encode($data));
