@@ -12,7 +12,7 @@ SUM("Custom SQL Query"."minutes_spent") AS "sum:minutes_spent:ok",
 (
   CAST(
     DATE_TRUNC(
-      "DAY",
+      `DAY`,
       CAST("Custom SQL Query"."created" AS TIMESTAMP)
     ) AS DATE
   ) - (
@@ -25,7 +25,7 @@ SUM("Custom SQL Query"."minutes_spent") AS "sum:minutes_spent:ok",
           ) AS BIGINT
         ) - 1
       ) % 7
-    ) * INTERVAL "1 DAY"
+    ) * INTERVAL `1 DAY`
   )
 ) AS "twk:created:ok",
 "Custom SQL Query"."worker_initials" AS "worker_initials"
