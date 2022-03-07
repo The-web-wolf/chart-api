@@ -7,7 +7,7 @@ header('Access-Control-Allow-Credentials: true');
 
 // read data from postgresql
 $status = "f";
-$query = "SELECT * FROM task_manager.tasks WHERE is_active = '$status'";
+$query = "SELECT * FROM tasks WHERE is_active = '$status'";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
