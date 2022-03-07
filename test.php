@@ -18,7 +18,7 @@ header('Access-Control-Allow-Credentials: true');
 
 
 // read data from postgresql
-$query = "SELECT * FROM report";
+$query = "SELECT * FROM task_manager.tasks";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 $rows_count = pg_num_rows($result);
