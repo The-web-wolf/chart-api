@@ -16,10 +16,12 @@ $data = array();
 $index = 0;
 while ($row = pg_fetch_row($result)) {
   $index++;
-  // add to data with key pair values
-  $data[] = array(
-    'id' => $index,
-    'name' => $row[0],
-  );
+  // add to data with key pair values if value is not null
+  if($row[0] != null) {
+    $data[] = array(
+      'name' => $row[0],
+      'index' => $index,
+    );
+  }
 }
 print_r(json_encode($data));
