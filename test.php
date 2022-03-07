@@ -4,14 +4,16 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Allow-Credentials: true');
-
-
+//connect to db
 $db_name = "chart";
-
 $conn = pg_connect("host=$db_host port=$db_port dbname=$db_name user=$db_user password=$db_pass") or die('Could not connect: ' . pg_last_error());
 
+$filter = $_GET['filter'];
+// sanitize input
+$filter = pg_escape_string($filter);
+
 // read data from postgresql
-$query = 'SELECT * FROM "new-chart" ';
+$query = 'SELECT * FROM "new-chart" WHERE name = '.$filter.' ';
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
