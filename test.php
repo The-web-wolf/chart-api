@@ -26,7 +26,7 @@ if (!$result) {
 }else
 {
     echo "Function created successfully.\n";
-};
+}
 
 // read data from postgresql
 $query = 'SELECT AVG("Custom SQL Query"."minutes_spent") AS "avg:minutes_spent:ok",
