@@ -8,6 +8,8 @@ header('Access-Control-Allow-Credentials: true');
 
 $db_name = "chart";
 
+$conn = pg_connect("host=$db_host port=$db_port dbname=$db_name user=$db_user password=$db_pass") or die('Could not connect: ' . pg_last_error());
+
 // read data from postgresql
 $query = 'SELECT * FROM "new-chart" ';
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
