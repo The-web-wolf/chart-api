@@ -33,9 +33,8 @@ SUM("Custom SQL Query"."minutes_spent") AS "sum:minutes_spent:ok",
 "Custom SQL Query"."worker_initials" AS "worker_initials"
 FROM (
 select id, worker_initials, name, created, minutes_spent
-from task_manager.tasks
-where is_active is false
-and worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
+from tasks
+where worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
 --group by 1, 2, 3
 --having (count(*) > 4) and avg(minutes_spent) is not null and avg(minutes_spent) > 0
 order by 2, 3, 1
@@ -44,9 +43,8 @@ INNER JOIN (
 SELECT "Custom SQL Query"."name" AS "name"
 FROM (
   select id, worker_initials, name, created, minutes_spent
-  from task_manager.tasks
-  where is_active is false
-  and worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
+  from tasks
+  where worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
   --group by 1, 2, 3
   --having (count(*) > 4) and avg(minutes_spent) is not null and avg(minutes_spent) > 0
   order by 2, 3, 1
