@@ -17,7 +17,7 @@ if (isset($_GET['filter'])) {
 }
 
 // read data from postgresql
-$query = 'SELECT * FROM "new-chart" WHERE name = ' . $filter . ' ';
+$query = "SELECT * FROM \"new-chart\" WHERE name = '$filter'";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
