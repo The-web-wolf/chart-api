@@ -8,16 +8,21 @@ header('Access-Control-Allow-Credentials: true');
 $db_name = "chart";
 $conn = pg_connect("host=$db_host port=$db_port dbname=$db_name user=$db_user password=$db_pass") or die('Could not connect: ' . pg_last_error());
 
-if (isset($_GET['filter'])) {
-  $filter = $_GET['filter'];
-  // sanitize input
-  $filter = pg_escape_string($filter);
+if (isset($_GET['name'])) {
+  $name = $_GET['name'];
+  $name = pg_escape_string($name);
 } else {
-  $filter = "vat_report";
+  $name = "vat_report";
 }
 
-// read data from postgresql
-$query = "SELECT * FROM \"new-chart\" WHERE name = '$filter'";
+if (isset($_GET['freelancer'])) {
+  $freelancer = $_GET['freelancer'];
+  $freelancer = pg_escape_string($freelancer);
+  $query = "SELECT * FROM \"new-chart\" WHERE name = '$name' AND worker_initials = '$freelancer' ";
+} else {
+  $query = "SELECT * FROM \"new-chart\" WHERE name = '$name' ";
+}
+
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
