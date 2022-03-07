@@ -9,10 +9,6 @@ header('Access-Control-Allow-Credentials: true');
 $query = 'SELECT * FROM task_manager.tasks';
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
+var_dump($result);
 // print data
 $data = array();
-while ($row = pg_fetch_row($result)) {
-    $data[] = $row;
-}
-
-print_r(json_encode($data));
