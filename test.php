@@ -18,7 +18,7 @@ header('Access-Control-Allow-Credentials: true');
 
 
 // read data from postgresql
-$query = "SELECT * FROM reports";
+$query = "SELECT * FROM report";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 print_r($result)
