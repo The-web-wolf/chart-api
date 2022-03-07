@@ -25,9 +25,9 @@ $data = array();
 while ($row = pg_fetch_row($result)) {
   // add to data with key pair values
   $data[] = array(
-    'avg_minutes_spent' => intval($row[0]),
+    'avg_minutes_spent' => floatval($row[0]),
     'name' => $row[1],
-    'sum_minutes_spent' => intval($row[2]),
+    'sum_minutes_spent' => floatval($row[2]),
     'created' => $row[3],
     'worker_initials' => $row[4],
   );
