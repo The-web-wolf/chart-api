@@ -5,6 +5,26 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Allow-Credentials: true');
 
+// // create a postgres function
+// $sql = "CREATE OR REPLACE FUNCTION task_manager.is_active_task(task_id integer) RETURNS boolean AS
+// $BODY$
+// DECLARE
+//     task_active boolean;
+//     BEGIN
+//         SELECT active INTO task_active FROM task WHERE task_id = task_id;
+//         RETURN task_active;
+//     END;
+//     $BODY$
+//     LANGUAGE plpgsql VOLATILE
+//     COST 100;";
+// $run_query = pg_query($conn, $sql);
+
+// if(!$run_query) {
+//     echo pg_last_error($conn);
+// } else {
+//     echo "Function created successfully\n";
+// }
+
 // read data from postgresql
 $query = 'SELECT AVG("Custom SQL Query"."minutes_spent") AS "avg:minutes_spent:ok",
 "Custom SQL Query"."name" AS "name",
@@ -13,7 +33,7 @@ SUM("Custom SQL Query"."minutes_spent") AS "sum:minutes_spent:ok",
 "Custom SQL Query"."worker_initials" AS "worker_initials"
 FROM (
 select id, worker_initials, name, created, minutes_spent
-from tasks
+from task_manager.tasks
 where is_active is false
 and worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
 --group by 1, 2, 3
@@ -24,7 +44,7 @@ INNER JOIN (
 SELECT "Custom SQL Query"."name" AS "name"
 FROM (
   select id, worker_initials, name, created, minutes_spent
-  from tasks
+  from task_manager.tasks
   where is_active is false
   and worker_initials in (select worker_initials from freelancers where is_bot is false and ready_for_receiving_tasks)
   --group by 1, 2, 3
