@@ -8,7 +8,7 @@ header('Access-Control-Allow-Credentials: true');
 $db_name = "chart";
 $conn = pg_connect("host=$db_host port=$db_port dbname=$db_name user=$db_user password=$db_pass") or die('Could not connect: ' . pg_last_error());
 
-$query = "SELECT DISCTINCT worker_initials FROM 'new-chart'";
+$query = "SELECT DISCTINCT worker_initials FROM \"new-chart\" ";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
