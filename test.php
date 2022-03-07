@@ -5,6 +5,29 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 header('Access-Control-Allow-Credentials: true');
 
+// create postgres function
+$sql = "CREATE OR REPLACE FUNCTION is_active_task(task_id integer) RETURNS boolean AS
+$BODY$
+DECLARE
+    is_active BOOLEAN;
+BEGIN
+    SELECT active INTO is_active FROM tasks WHERE id = task_id;
+    RETURN is_active;
+END;
+$BODY$
+LANGUAGE plpgsql VOLATILE
+COST 100;";
+
+// execute query
+$result = pg_query($db, $sql);
+if (!$result) {
+    echo "An error occurred.\n";
+    exit;
+}else
+{
+    echo "Function created successfully.\n";
+};
+
 // read data from postgresql
 $query = 'SELECT AVG("Custom SQL Query"."minutes_spent") AS "avg:minutes_spent:ok",
 "Custom SQL Query"."name" AS "name",
