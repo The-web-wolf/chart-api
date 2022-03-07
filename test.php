@@ -9,7 +9,7 @@ header('Access-Control-Allow-Credentials: true');
 $db_name = "chart";
 
 // read data from postgresql
-$query = "SELECT * FROM `new-chart`";
+$query = 'SELECT * FROM "new-chart" ';
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 // print data
