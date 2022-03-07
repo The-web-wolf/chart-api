@@ -43,7 +43,7 @@ FROM (
       where is_bot is false
         and ready_for_receiving_tasks
     ) --group by 1, 2, 3
-    - -
+    --
   having (count(*) > 4)
     and avg(minutes_spent) is not null
     and avg(minutes_spent) > 0
@@ -67,7 +67,7 @@ INNER JOIN (
           where is_bot is false
             and ready_for_receiving_tasks
         ) --group by 1, 2, 3
-        - -
+        --
       having (count(*) > 4)
         and avg(minutes_spent) is not null
         and avg(minutes_spent) > 0
