@@ -22,4 +22,4 @@ $query = "SELECT * FROM report";
 $result = pg_query($conn, $query) or die('Query failed: ' . pg_last_error());
 
 $rows_count = pg_num_rows($result);
-print($rows_count)
+print($rows_count);
