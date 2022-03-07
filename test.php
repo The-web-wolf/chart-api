@@ -36,7 +36,7 @@ FROM (
     created,
     minutes_spent
   from tasks
-  where is_active_task(id) is false
+  where is_active is false
     and worker_initials in (
       select worker_initials
       from freelancers
@@ -60,7 +60,7 @@ INNER JOIN (
         created,
         minutes_spent
       from tasks
-      where is_active_task(id) is false
+      where is_active is false
         and worker_initials in (
           select worker_initials
           from freelancers
